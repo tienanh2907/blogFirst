@@ -1,8 +1,11 @@
 <?php
-$server = "localhost";
+$server = $_SERVER["SERVER_NAME"];
 $username = "root";
 $password = "";
 $dbname = "db_blog";
-//$port=  "3306";
+$port=  $_SERVER["SERVER_PORT"];
 
-$conn = mysqli_connect($server, $username, $password, $dbname) or die("Connection database failed: " );
+$conn = mysqli_connect($server.":".$port, $username, $password, $dbname) or die("Connection database failed: " );
+
+?>
+
