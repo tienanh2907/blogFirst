@@ -1,17 +1,12 @@
 <?php
-/*
-
-    case 'blog//' : 
-print_r($input);
-*/
 //define route
 $input = (!empty($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : $_SERVER['REQUEST_URI'];
 
-//  echo '<pre>';
-//  var_dump($_SERVER); die();
+ echo '<pre>';
+ var_dump($input); die();
 
 switch($input) {
-    case '/' : 
+    case '/input.php' : 
         include 'home.php';
         break;
     case '/login' : 
@@ -28,6 +23,9 @@ switch($input) {
         break;
     case '/delete_blog':
         include 'delete_blog.php';
+        break;
+    case '/blog':
+        include 'blog.php';
         break;
     default:
         include '404.php';
