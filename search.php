@@ -1,55 +1,57 @@
-<?php 
+<?php
+include("connect.php");
+$keyword;
 
-$key =  $_GET["keyword"];
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $keyword = (!empty($_GET['keyword'])) ?  $_GET['keyword'] : '';
 
-$arrX = array("Kay", "Joe","Susan", "Frank", "MAC", "WINDOWS","LINUX", "SOLARIS");
-$result = [];
+    if ($keyword) {
+        $sql = "SELECT * FROM blog WHERE tittle = '$keyword'";
+        $result = [];
+        $result = mysqli_query($conn, $sql);
+        // var_dump($result);die();
+        if (mysqli_num_rows($result) > 0) {
 
-if(!empty($key)) {
-    foreach($arrX as $value){
-        $check = strpos($value, $key);
-        if($check){
-            $result[] = $value;
-        }   
+            foreach ($result as $i) {
+                $result = $i;
+                break;
+            }
+        } else {
+            echo "Tittle does not exist";
+        }
     }
 }
 ?>
 
 
 <html>
+
 <head>
-	<title>Trang tim kiem</title>
-	<meta charset="utf-8">
+    <title>Trang tim kiem</title>
+    <meta charset="utf-8">
 </head>
+
 <body>
-	<form method="get" action="/search">
+    <form method="get" action="/search">
         <fieldset>
             <legend>Tim kiem</legend>
-                <table>
-                    <tr>
-                        <td>Keyword</td>
-                        <td><input type="text" name="keyword" size="30" value="<?php echo $_GET["keyword"];?>"></td>
+            <table>
+                <tr>
+                    <td>Tiêu đề blog</td>
+                    <td><input type="text" name="keyword" size="30" value=""></td>
 
-                    </tr>
-                
-                    <tr>
-                        <td colspan="2" align="center"> 
-                        <input type="submit" name="btn_submit" value="Đăng nhập"></td>
-                    </tr>
-                    
-                </table>
-    </fieldset>
-  </form>
-  <hr>
-  <?php
-    if(!empty($result)){
-       foreach($result as $r) {
-           echo "<p>{$r}</p>";
-       }   
-    }
-  ?>
+                </tr>
+
+                <tr>
+                    <td colspan="2" align="center">
+                        <input type="submit" name="btn_submit" value="Search">
+                    </td>
+                </tr>
+
+            </table>
+        </fieldset>
+    </form>
+    <hr>
 </body>
+
 </html>
-
-
-
