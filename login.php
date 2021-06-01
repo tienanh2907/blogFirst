@@ -1,13 +1,14 @@
 <?php
-include("connect.php");
+session_start();
 
+include("connect.php");
 $error = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     (!empty($_POST['username'])) ? $username = $_POST['username'] : $error[] = 'Enter the username';
     (!empty($_POST['password'])) ?  $password = $_POST['password'] : $error[] = 'Enter the password';
 
-    if(count($error)==0) {
+    if (count($error) == 0) {
         $password = md5($password);
 
         $sql = mysqli_query($conn, "SELECT username,password FROM tbl_account WHERE username = '$username'");
@@ -15,15 +16,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             echo "Username does not exist";
             exit;
         }
-        
+
         $row = mysqli_fetch_array($sql);
 
         if ($password != $row['password']) {
             echo "Password Fail";
             exit;
-        } else{
-            echo "Login Successful";
+        }else{
+            $_SESSION['username'] = $username;
+            header('location: http://' . $_SERVER['HTTP_HOST'] );
+            die();
         }
+
     }
 }
 ?>
@@ -40,10 +44,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <fieldset>
             <legend>Đăng nhập</legend>
             <ul>
-                <?php 
-                    foreach($error as $val) {
-                        echo "<li>{$val}</li>";
-                    }
+                <?php
+                foreach ($error as $val) {
+                    echo "<li>{$val}</li>";
+                }
                 ?>
             </ul>
             <table>

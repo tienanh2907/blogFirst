@@ -1,10 +1,3 @@
-
-<?php
-include("connect.php");
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,8 +7,10 @@ include("connect.php");
     <title>Document</title>
 </head>
 <body>
-<a href="/create_blog"> tao moi </a>
-    
+<form action="/upload.php" method="post" enctype="multipart/form-data">
+    Chọn file để upload:
+    <input type="file" name="fileupload" id="fileupload">
+    <input type="submit" name="submit" value="Đăng ảnh">
+</form>
 </body>
 </html>
-

@@ -1,5 +1,5 @@
 <?php
-include("connect.php");
+include 'connect.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tittle =  $_POST['tittle'];
     $context = $_POST['content'];
@@ -68,19 +68,19 @@ if ($id) {
             <table>
                 <tr>
                     <td>Tittle</td>
-                    <td><input type="text" name="tittle" value="<?php
-                                                                if (!empty($blog['tittle'])) {
-                                                                    echo $blog['tittle'];
-                                                                }
-                                                                ?>"></td>
+                    <td><input type="text" name="tittle" placeholder="Nhập tiêu đề" required="true" value="<?php
+                                                                                                            if (!empty($blog['tittle'])) {
+                                                                                                                echo $blog['tittle'];
+                                                                                                            }
+                                                                                                            ?>"></td>
                 </tr>
                 <tr>
                     <td>Context</td>
-                    <td><textarea id="" name="content" rows="4" cols="50"><?php
-                                                                            if (!empty($blog['tittle'])) {
-                                                                                echo $blog['content'];
-                                                                            }
-                                                                            ?>
+                    <td><textarea id="" name="content" placeholder="Nhập nội dung" required="true" rows="4" cols="50"><?php
+                                                                                                                        if (!empty($blog['tittle'])) {
+                                                                                                                            echo $blog['content'];
+                                                                                                                        }
+                                                                                                                        ?>
                     </textarea>
 
                 </tr>

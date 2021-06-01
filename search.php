@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 </head>
 
 <body>
-    <form method="get" action="/search">
+    <form method="GET" action="/search">
         <fieldset>
             <legend>Tim kiem</legend>
             <table>
