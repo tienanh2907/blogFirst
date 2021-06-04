@@ -1,13 +1,10 @@
 <?php
+session_start();
 //define route
 $input = (!empty($_SERVER['PATH_INFO'])) ? $_SERVER['PATH_INFO'] : $_SERVER['REQUEST_URI'];
 
-// echo '<pre>';
-// var_dump($_SERVER);
-// die();
-
 switch ($input) {
-    case '/':
+    case "/":
         include 'home.php';
         break;
     case "/login":
@@ -28,8 +25,11 @@ switch ($input) {
     case '/blog':
         include 'blog.php';
         break;
-    case'/logout':
+    case '/logout':
         include 'logout.php';
+        break;
+    case '/uploadfile':
+        include 'uploadfile.php';
         break;
     default:
         include '404.php';

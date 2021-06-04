@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 include("connect.php");
 $error = [];
@@ -11,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (count($error) == 0) {
         $password = md5($password);
 
-        $sql = mysqli_query($conn, "SELECT username,password FROM tbl_account WHERE username = '$username'");
+        $sql = mysqli_query($conn, "SELECT username,password FROM account WHERE username = '$username'");
         if (mysqli_num_rows($sql) == 0) {
             echo "Username does not exist";
             exit;
@@ -32,10 +31,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Trang đăng nhập</title>
+    <title>Đăng nhập</title>
     <meta charset="utf-8">
 </head>
 
