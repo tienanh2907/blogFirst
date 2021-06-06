@@ -5,15 +5,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $context = $_POST['content'];
     $id =  $_POST['id'];
 
-    function upfile(){
-        if($_FILES["fileupload"]["error"]>0){
+    function upfile()
+    {
+        if ($_FILES["fileupload"]["error"] > 0) {
             echo "error uploading your file";
-        }else{
+        } else {
             $target_dir = 'upload/';
             $target_file = $target_dir . basename($_FILES["fileupload"]["name"]);
             move_uploaded_file($_FILES["fileupload"]["tmp_name"], $target_file);
         }
     }
+
 
     if (!$id) {
         //tao moi blog
@@ -41,14 +43,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+//get blog
 $id = (!empty($_GET['id'])) ?  $_GET['id'] : '';
 $blog = [];
 
 if ($id) {
-    //select duieura man hnh
-    // if(!empty($blog['tittle'])) {
-    //     echo $blog['tittle'];
-    // }
     $sql = "SELECT * FROM blog WHERE id = '$id' ";
 
     $blog = mysqli_query($conn, $sql);
@@ -61,11 +60,10 @@ if ($id) {
     }
 }
 
-
-
 ?>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -99,6 +97,27 @@ if ($id) {
 <body>
     <form method="POST" action="/create_blog" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $id; ?>" />
+        <header>
+            <div class="navbar navbar-dark bg-dark shadow-sm">
+                <div class="container">
+                    <a href="/home" class="">
+                        <img scr="">
+                    </a>
+                    <div class="header__bottom__right">
+                        <div class="social-header">
+                            <ul class="mom-social-icons">
+                                <li class="facebook"><a href="#" class="vector_icon"><i class="fa fa-facebook"></i></a>></li>
+                                <li class="youtube"><a href="#" class="vector_icon"><i class="fa fa-youtube"></i></a></li>
+                                <li class="google"><a href="#" class="vector_icon"><i class="fa fa-google"></i></a>></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
         <fieldset>
             <legend>Tao blog</legend>
             <table>
@@ -133,6 +152,17 @@ if ($id) {
 
             </table>
         </fieldset>
+        </main>
+       
+        <footer class="text-muted py-5">
+            <div class="container">
+                <p class="float-end mb-1">
+                    <a href="#">Back to top</a>
+                </p>
+                <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+                <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
+            </div>
+        </footer>
     </form>
 </body>
 

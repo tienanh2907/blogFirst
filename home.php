@@ -1,8 +1,11 @@
 <?php
-
 include 'connect.php';
 $sql = "SELECT * FROM blog";
 $data = mysqli_query($conn, $sql);
+// $s = () ?  $_GET['s'] : '';
+if (!empty($_GET['s'])) {
+    header('location: http://' . $_SERVER['HTTP_HOST'] . '/search');
+}
 
 ?>
 
@@ -31,114 +34,113 @@ $data = mysqli_query($conn, $sql);
             user-select: none;
         }
 
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
+        .search-submit {
+            display: none;
         }
     </style>
 </head>
 
 <body>
-    <form method="GET" action="">
-        <input type="hidden" name="id" value="<?php echo $id; ?>" />
-        <header>
-            <div class="navbar navbar-dark bg-dark shadow-sm">
-                <div class="container">
-                    <a href="/home" class="">
-                        <img scr="">
-                    </a>
-                    <div class="header__bottom__right">
-                        <div class="social-header">
-                            <ul class="mom-social-icons">
-                                <li class="facebook"><a href="#" class="vector_icon"><i class="fa fa-facebook"></i></a>></li>
-                                <li class="youtube"><a href="#" class="vector_icon"><i class="fa fa-youtube"></i></a></li>
-                                <li class="google"><a href="#" class="vector_icon"><i class="fa fa-google"></i></a>></li>
-
-                            </ul>
-                        </div>
+    <header>
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+            <div class="container">
+                <a href="/">
+                    <img scr='public/logo/home.png' alt="home" width="50" height="50">
+                </a>
+                <div class="">
+                    <form method="GET" action="/search">
+                        <input type="search" name="s" placeholder="Search..." aria-label="Search" value="">
+                    </form>
+                </div>
+                <div class="">
+                    <div class="social-header">
+                        <ul class="mom-social-icons">
+                            <li class="facebook"><a href="#" class=""><i class="fa fa-facebook"></i></a>></li>
+                            <li class="youtube"><a href="#" class=""><i class="fa fa-youtube"></i></a></li>
+                            <li class="google"><a href="#" class=""><i class="fa fa-google"></i></a>></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <main>
-            <section class="py-5 text-center container">
-                <div class="row py-lg-5">
-                    <div class="col-lg-6 col-md-8 mx-auto">
-                        <h1 class="fw-light"><?php
-                                                if (isset($_SESSION['username'])) {
-                                                    echo "Xin chào " . $_SESSION['username'];
-                                                    echo '<p class="lead text-muted">Chào mừng đến bạn blog</p>';
-                                                    echo '<a href="/logout" class="btn btn-secondary my-2">Đăng xuất</a>';
-                                                ?></h1>
-                        <p>
-                        <?php
-                                                } else {
-                                                    echo '<a href="/login" class="btn btn-primary my-2">Đăng nhập</a>';
-                                                }
+    <main>
+        <section class="py-5 text-center container">
+            <div class="row py-lg-5">
+                <div class="col-lg-6 col-md-8 mx-auto">
+                    <h1 class="fw-light"><?php
+                                            if (isset($_SESSION['username'])) {
+                                                echo "Xin chào " . $_SESSION['username'];
+                                                echo '<p class="lead text-muted">Chào mừng đến bạn blog</p>';
+                                                echo '<a href="/logout" class="btn btn-secondary my-2">Đăng xuất</a>';
+                                            ?></h1>
+                    <p>
+                    <?php
+                                            } else {
+                                                echo '<a href="/login" class="btn btn-primary my-2">Đăng nhập</a>';
+                                            }
 
 
-                        ?>
-                        </p>
-                    </div>
+                    ?>
+                    </p>
                 </div>
-            </section>
+            </div>
+        </section>
 
 
-            <div class="album py-5 bg-light">
-                <div class="container">
+        <div class="album py-5 bg-light">
+            <div class="container">
 
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                        <?php
-                        foreach ($data as $d) {
-                        ?>
-                            <div class="col">
-                                <div class="card shadow-sm">
-                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
-                                        <title>Placeholder</title>
-                                        <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
-                                    </svg>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <?php
+                    foreach ($data as $d) {
+                    ?>
+                        <div class="col">
+                            <div class="card shadow-sm">
+                                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+                                    <title>Placeholder</title>
+                                    <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text>
+                                </svg>
 
-                                    <div class="card-body">
-                                        <p class="card-text"><?php
-                                                                echo $d['tittle'];
-                                                                ?></p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="btn-group">
+                                <div class="card-body">
+                                    <p class="card-text"><?php
+                                                            echo $d['tittle'];
+                                                            ?></p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
 
-                                                <a href="/blog?id=<?php echo $d['id']; ?>" class="btn btn-sm btn-outline-secondary">View</a>
-                                                <?php
-                                                if (isset($_SESSION['username'])) {
-                                                ?>
-                                                    <a href="/create_blog?id=<?php echo $d['id']; ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
-                                                <?php
-                                                }
-                                                ?>
+                                            <a href="/blog?id=<?php echo $d['id']; ?>" class="btn btn-sm btn-outline-secondary">View</a>
+                                            <?php
+                                            if (isset($_SESSION['username'])) {
+                                            ?>
+                                                <a href="/create_blog?id=<?php echo $d['id']; ?>" class="btn btn-sm btn-outline-secondary">Edit</a>
+                                            <?php
+                                            }
+                                            ?>
 
-                                            </div>
-                                            <small class="text-muted"></small>
                                         </div>
+                                        <small class="text-muted"></small>
                                     </div>
                                 </div>
                             </div>
-                        <?php } ?>
-                    </div>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
 
-        <footer class="text-muted py-5">
-            <div class="container">
-                <p class="float-end mb-1">
-                    <a href="#">Back to top</a>
-                </p>
-                <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-                <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
-            </div>
-        </footer>
+    <footer class="text-muted py-5">
+        <div class="container">
+            <p class="float-end mb-1">
+                <a href="#">Back to top</a>
 
-    </form>
+            </p>
+            <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+            <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="../getting-started/introduction/">getting started guide</a>.</p>
+        </div>
+    </footer>
 
 
 </body>

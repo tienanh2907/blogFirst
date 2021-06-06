@@ -1,6 +1,5 @@
 <?php
 include("connect.php");
-
 ?>
 
 <!DOCTYPE html>
@@ -40,11 +39,8 @@ include("connect.php");
     <header>
         <div class="navbar navbar-dark bg-dark shadow-sm">
             <div class="container">
-                <a href="#" class="navbar-brand d-flex align-items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24">
-                        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" />
-                        <circle cx="12" cy="13" r="4" />
-                    </svg>
+                <a href="/">
+                    <img scr='public/logo/home.png' alt="home" width="50" height="50">
                 </a>
                 <div class="header__bottom__right">
                     <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
@@ -63,10 +59,10 @@ include("connect.php");
             $data = mysqli_query($conn, $sql);
             $title = '';
             $content = '';
-            $timeup ='';
+            $timeup = '';
 
             foreach ($data as $d) {
-                $title= $d['tittle'];
+                $title = $d['tittle'];
                 $content = $d['content'];
                 $timeup = $d['timeup'];
                 break;
@@ -76,13 +72,11 @@ include("connect.php");
 
         <div class="container">
             <div class="posts-container mx-auto px-3 my-5">
-                <div class="posts">
-
-
-                    <div class="post">
+                <div>
+                    <div>
                         <h1 class="post-title fw-500">
-                            <a href="/blog?id="<?php echo $id;?>>
-                            <?php
+                            <a href="/blog?id=" <?php echo $id; ?>>
+                                <?php
                                 echo $title;
                                 ?>
                             </a>
@@ -92,7 +86,7 @@ include("connect.php");
                                 <?php echo $timeup;  ?>
                             </span>
                         </div>
-                        <p><?php echo $content;?></p>
+                        <p><?php echo $content; ?></p>
                     </div>
                 </div>
 
@@ -102,7 +96,7 @@ include("connect.php");
         </div>
 
     </main>
-    <footer class ="text-muted py-5">
+    <footer class="text-muted py-5">
         <div class="container">
             <p class="float-end mb-1">
                 <a href="#">Back to top</a>
