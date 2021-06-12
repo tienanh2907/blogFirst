@@ -45,21 +45,21 @@ if (!empty($_GET['s'])) {
         <div class="navbar navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <a href="/">
-                    <img scr='public/logo/home.png' alt="home" width="50" height="50">
+                    <img src='./public/logo/home.png' alt="home" width="30" height="30"/>
                 </a>
                 <div class="">
                     <form method="GET" action="/search">
                         <input type="search" name="s" placeholder="Search..." aria-label="Search" value="">
                     </form>
                 </div>
-                <div class="">
-                    <div class="social-header">
-                        <ul class="mom-social-icons">
-                            <li class="facebook"><a href="#" class=""><i class="fa fa-facebook"></i></a>></li>
-                            <li class="youtube"><a href="#" class=""><i class="fa fa-youtube"></i></a></li>
-                            <li class="google"><a href="#" class=""><i class="fa fa-google"></i></a>></li>
+                <div class="header__bottom__right">
+                    <nav>
+                        <ul>
+                            <li><a href="#" target="_blank" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" target="_blank" class="youtube"><i class="fa fa-youtube"></i></a></li>
+                            <li><a href="#" target="_blank" class="google"><i class="fa fa-google"></i></a></li>
                         </ul>
-                    </div>
+                    </nav>
                 </div>
             </div>
         </div>

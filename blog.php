@@ -40,12 +40,17 @@ include("connect.php");
         <div class="navbar navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <a href="/">
-                    <img scr='public/logo/home.png' alt="home" width="50" height="50">
+                    <img src='public/logo/home.png' alt="home" width="50" height="50"/>
                 </a>
+                <div class="">
+                    <form method="GET" action="/search">
+                        <input type="search" name="s" placeholder="Search..." aria-label="Search" value="">
+                    </form>
+                </div>
                 <div class="header__bottom__right">
-                    <li><a href="#" class="facebook"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#" class="youtube"><i class="fa fa-youtube"></i></a></li>
-                    <li><a href="#" class="google"><i class="fa fa-google"></i></a></li>
+                    <li><a href="#" target="_blank" class="facebook"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#" target="_blank" class="youtube"><i class="fa fa-youtube"></i></a></li>
+                    <li><a href="#" target="_blank" class="google"><i class="fa fa-google"></i></a></li>
                 </div>
             </div>
         </div>
