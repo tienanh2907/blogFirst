@@ -1,5 +1,7 @@
 <?php
 include("connect.php");
+$database = new Database();
+$conn = $database->getConnection()
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +42,7 @@ include("connect.php");
         <div class="navbar navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <a href="/">
-                    <img src='public/logo/home.png' alt="home" width="50" height="50"/>
+                    <img src='public/logo/home.png' alt="home" width="50" height="50" />
                 </a>
                 <div class="">
                     <form method="GET" action="/search">
@@ -80,11 +82,10 @@ include("connect.php");
                 <div>
                     <div>
                         <h1 class="post-title fw-500">
-                            <a href="/blog?id=" <?php echo $id; ?>>
-                                <?php
-                                echo $title;
-                                ?>
-                            </a>
+                            <?php
+                            echo $title;
+                            ?>
+
                         </h1>
                         <div class="d-flex align-items-center mb-4 text-muted author-info">
                             <span class="d-flex align-items-center ml-3" title="">

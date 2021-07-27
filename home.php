@@ -1,9 +1,10 @@
 <?php
 include 'connect.php';
+$database = new Database();
+$conn = $database->getConnection();
 $sql = "SELECT * FROM blog";
-$data = mysqli_query($conn, $sql);
-// $s = () ?  $_GET['s'] : '';
-if (!empty($_GET['s'])) {
+$data = $conn->query($sql);
+if (!empty($_GET['search'])) {
     header('location: http://' . $_SERVER['HTTP_HOST'] . '/search');
 }
 
@@ -16,10 +17,8 @@ if (!empty($_GET['s'])) {
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="generator" content="Hugo 0.83.1">
-    <title>Blog</title>
 
+    <title>Blog</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/album/">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
@@ -45,11 +44,11 @@ if (!empty($_GET['s'])) {
         <div class="navbar navbar-dark bg-dark shadow-sm">
             <div class="container">
                 <a href="/">
-                    <img src='./public/logo/home.png' alt="home" width="30" height="30"/>
+                    <img src='./public/logo/home.png' alt="home" width="30" height="30" />
                 </a>
                 <div class="">
                     <form method="GET" action="/search">
-                        <input type="search" name="s" placeholder="Search..." aria-label="Search" value="">
+                        <input type="search" name="search" placeholder="Search..." aria-label="Search" value="">
                     </form>
                 </div>
                 <div class="header__bottom__right">
@@ -69,20 +68,16 @@ if (!empty($_GET['s'])) {
         <section class="py-5 text-center container">
             <div class="row py-lg-5">
                 <div class="col-lg-6 col-md-8 mx-auto">
-                    <h1 class="fw-light"><?php
-                                            if (isset($_SESSION['username'])) {
-                                                echo "Xin chào " . $_SESSION['username'];
-                                                echo '<p class="lead text-muted">Chào mừng đến bạn blog</p>';
-                                                echo '<a href="/logout" class="btn btn-secondary my-2">Đăng xuất</a>';
-                                            ?></h1>
+                    <h1 class="fw-light">
+                        <?php if (isset($_SESSION['username'])) { ?>
+                            <h3>Xin chào  <?php echo $_SESSION['username'];?> </h3>
+                            <p class="lead text-muted">Chào mừng đến bạn blog</p>
+                            <a href="/logout" class="btn btn-secondary my-2">Đăng xuất</a>
+                    </h1>
                     <p>
-                    <?php
-                                            } else {
-                                                echo '<a href="/login" class="btn btn-primary my-2">Đăng nhập</a>';
-                                            }
-
-
-                    ?>
+                    <?php } else { ?>
+                        <a href="/login" class="btn btn-primary my-2">Đăng nhập</a>
+                    <?php } ?>
                     </p>
                 </div>
             </div>

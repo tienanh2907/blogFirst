@@ -1,5 +1,7 @@
 <?php
 include 'connect.php';
+$database = new Database();
+$conn = $database->getConnection();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tittle =  $_POST['tittle'];
     $context = $_POST['content'];
@@ -19,8 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (!$id) {
         //tao moi blog
-        $sql = "INSERT INTO `blog`(`tittle`, `content`, `iduser`) 
-        VALUES('$tittle','$context','')";
+        $sql = "INSERT INTO `blog`(`tittle`, `content`, `iduser`) VALUES('$tittle','$context','')";
         if (mysqli_query($conn, $sql)) {
             //dang anh
             upfile();
