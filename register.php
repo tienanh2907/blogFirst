@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if(validate($_POST)) {
         $pass = md5($pass);
-        $sql ="INSERT INTO `tbl_account`(`username`, `fullname`, `password`) 
+        $sql ="INSERT INTO `account`(`username`, `fullname`, `password`) 
           VALUES('$user','$fullname','$pass');";
         //mysqli_query($conn, $sql);
         if (mysqli_query($conn, $sql)) {

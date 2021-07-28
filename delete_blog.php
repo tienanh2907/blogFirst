@@ -9,7 +9,6 @@ if ($id) {
     $sql = " DELETE FROM blog WHERE id = '$id' ";
 
     $blog = mysqli_query($conn, $sql);
-   
-    header('location: http://' . $_SERVER['HTTP_HOST'] );
+
+    header('location: http://' . $_SERVER['HTTP_HOST']);
 }
-    

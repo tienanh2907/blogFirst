@@ -1,17 +1,16 @@
 <?php
-session_start();
 
 include("connect.php");
 $error = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    (!empty($_POST['username'])) ? $username = $_POST['username'] : $error[] = 'Enter the username';
-    (!empty($_POST['password'])) ?  $password = $_POST['password'] : $error[] = 'Enter the password';
+    (!empty($_POST['username'])) ? $username = trim($_POST['username']) : $error[] = 'Enter the username';
+    (!empty($_POST['password'])) ?  $password = trim($_POST['password']) : $error[] = 'Enter the password';
 
-    if (count($error) == 0) {
+    if (count($error) == 0 && !$_SESSION['username']) {
         $password = md5($password);
 
-        $sql = mysqli_query($conn, "SELECT username,password FROM tbl_account WHERE username = '$username'");
+        $sql = mysqli_query($conn, "SELECT `username`,`password` FROM account WHERE `username` = '$username'");
         if (mysqli_num_rows($sql) == 0) {
             echo "Username does not exist";
             exit;
@@ -27,15 +26,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header('location: http://' . $_SERVER['HTTP_HOST'] );
             die();
         }
-
     }
+    echo "Dang nhap thanh cong";
 }
 ?>
 
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Trang đăng nhập</title>
+    <title>Đăng nhập</title>
     <meta charset="utf-8">
 </head>
 

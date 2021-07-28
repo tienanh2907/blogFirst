@@ -1,7 +1,7 @@
-<?php session_start(); 
+<?php 
 
 if (isset($_SESSION['username'])){
     unset($_SESSION['username']); // xóa session login
-    header('location: http://' . $_SERVER['HTTP_HOST'] );//
+    header('location: /login.php' );//
 }
 ?>
