@@ -21,9 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($password != $row['password']) {
             echo "Password Fail";
             exit;
-        }else{
+        } else {
             $_SESSION['username'] = $username;
-            header('location: http://' . $_SERVER['HTTP_HOST'] );
+            header('location: http://' . $_SERVER['HTTP_HOST']);
             die();
         }
     }
@@ -33,40 +33,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Đăng nhập</title>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="./style.css/login.css">
 </head>
 
 <body>
-    <form method="POST" action="/login">
-        <fieldset>
-            <legend>Đăng nhập</legend>
-            <ul>
+        <div class="box-center">
+            <form method="POST" action="/login">
+                <h2>ĐĂNG NHẬP</h2>
                 <?php
                 foreach ($error as $val) {
-                    echo "<li>{$val}</li>";
+                    echo "<div>{$val}</div>";
                 }
                 ?>
-            </ul>
-            <table>
-                <tr>
-                    <td>Username</td>
-                    <td><input type="text" name="username" size="30"></td>
-                </tr>
-                <tr>
-                    <td>Password</td>
-                    <td><input type="password" name="password" size="30"></td>
-                </tr>
-                <tr>
-                    <td colspan="2" align="center">
-                        <input type="submit" name="btn_submit" value="Đăng nhập">
-                    </td>
-                </tr>
-
-            </table>
-        </fieldset>
-    </form>
+                <input type="text" name="username" size="30" placeholder="Username">
+                <input type="password" name="password" size="30" placeholder="Password"></input>
+                <button type="submit" name="btn_submit">Sign in</button>
+            </form>
+        </div>
 </body>
 
 </html>
