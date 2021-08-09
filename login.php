@@ -39,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-<<<<<<< HEAD
     <form method="POST" action="/login">
         <fieldset>
             <legend>Đăng nhập</legend>
@@ -50,11 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 ?>
             </ul>
-=======
-    <form method="POST" action="login.php">
-        <fieldset>
-            <legend>Đăng nhập</legend>
->>>>>>> origin/master
             <table>
                 <tr>
                     <td>Username</td>
