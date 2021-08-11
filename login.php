@@ -37,23 +37,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <title>Đăng nhập</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="./style.css/login.css">
 </head>
 
 <body>
-        <div class="box-center">
-            <form method="POST" action="/login">
-                <h2>ĐĂNG NHẬP</h2>
-                <?php
-                foreach ($error as $val) {
-                    echo "<div>{$val}</div>";
-                }
-                ?>
+    <div class="wrapper">
+        <form method="POST" action="/login">
+            <h2>ĐĂNG NHẬP</h2>
+            <?php
+            foreach ($error as $val) {
+                echo "<div>{$val}</div>";
+            }
+            ?>
+            <div class="input-infor">
                 <input type="text" name="username" size="30" placeholder="Username">
                 <input type="password" name="password" size="30" placeholder="Password"></input>
-                <button type="submit" name="btn_submit">Sign in</button>
-            </form>
-        </div>
+            </div>
+            <a href="#">Forgot your password</a>
+            <button type="submit" name="btn_submit">Log in</button>
+        </form>
+        <a href="./register.php">Register</a>
+    </div>
 </body>
 
 </html>
