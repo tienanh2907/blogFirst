@@ -1,0 +1,105 @@
+html {
+  font-size: 62.5%;
+}
+body {
+  background: linear-gradient(
+    90deg,
+    rgba(131, 58, 180, 1) 0%,
+    rgba(253, 29, 29, 1) 50%,
+    rgba(252, 176, 69, 1) 100%
+  );
+  font-family: "Times New Roman", Times, serif;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  margin: auto;
+}
+
+.wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  background: #fff;
+  border: solid 1px gray;
+  border-radius: 10px;
+  width: 400px;
+  padding-bottom: 30px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.wrapper form {
+  padding: 0px 40px;
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 3rem;
+  color: #0069f0;
+  text-align: center;
+  margin-bottom: 20px;
+  border-bottom: solid 1px silver;
+  padding-bottom: 20px;
+}
+
+.input-infor input {
+  width: 300px;
+  margin: 5px 0px;
+  font-size: 1.8rem;
+  padding: 15px;
+  border-radius: 5px;
+  border: solid 1px #c0c0c0;
+  box-sizing: border-box;
+  outline:none
+}
+
+::placeholder {
+  color: #8d8d8d;
+}
+.input-infor input:hover {
+  background-color: rgba(235, 235, 235, 0.4);
+}
+.input-infor input:focus {
+  border: solid 1px #0069f0;
+}
+
+.re-password {
+  margin-top: 15px;
+  font-size: 1.6rem;
+}
+input[type="submit"] {
+  width: 300px;
+  text-align: center;
+  font-size: 20px;
+  background: #0069f0;
+  color: #fff;
+  font-weight: 700;
+  padding: 10px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 1px solid;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background: #005bd3;
+}
+
+.register {
+  font-size: 16px;
+  text-align: center;
+  color: #4b4b4b;
+}
+
+a {
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: #0069f0;
+  background: transparent;
+}
+
+a:hover {
+  text-decoration: underline;
+}

@@ -35,16 +35,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 
 <head>
-    <title>Đăng nhập</title>
+    <title>Login</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="./style.css/login.css">
+    <link rel="stylesheet" href="./css/login.css">
 </head>
 
 <body>
     <div class="wrapper">
+        <h1>Login</h1>
         <form method="POST" action="/login">
-            <h2>ĐĂNG NHẬP</h2>
             <?php
             foreach ($error as $val) {
                 echo "<div>{$val}</div>";
@@ -54,10 +54,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="text" name="username" size="30" placeholder="Username">
                 <input type="password" name="password" size="30" placeholder="Password"></input>
             </div>
-            <a href="#">Forgot your password</a>
-            <button type="submit" name="btn_submit">Log in</button>
+            <div class="re-password">
+                <a href="#">Forgot your password?</a>
+            </div>
+            <input type="submit" name="btn_submit" value="Login"></input>
+            <div class="register">Not a member? <a href="./register.php">Register</a></div>
         </form>
-        <a href="./register.php">Register</a>
     </div>
 </body>
 
