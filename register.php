@@ -35,7 +35,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <title>Register account</title>
@@ -47,19 +49,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <div class="wrapper">
+        <div class="title">Register</div>
         <form method="POST" action="/register">
-            <h2>Register</h2>
-            <div>
-                <span>Fullname</span>
+            <div class="text-field">
+                <label>Fullname</label>
                 <input type="text" name="fullname" size="30">
+                <div class="validate-error"></div>
+            </div>
+            <div class="text-field">
                 <label>Username</label>
                 <input type="text" name="username" size="30">
-                <span>Password</span>
-                <input type="password" name="password" size="30">
-                <span>Confirm Password</span>
-                <input type="password" name="confirm-password" size="30">
-                <input type="submit" name="btn_submit" value="Register">
+                <div class="validate-error"></div>
             </div>
+            <div class="text-field">
+                <label>Password</label>
+                <input type="password" name="password" size="30">
+                <div class="validate-error"></div>
+            </div>
+            <div class="text-field">
+                <label>Confirm Password</label>
+                <input type="password" name="confirm-password" size="30">
+                <div class="validate-error"></div>
+            </div>
+            <button>Register</button>
         </form>
     </div>
 </body>

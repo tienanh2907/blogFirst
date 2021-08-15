@@ -57,7 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="re-password">
                 <a href="#">Forgot your password?</a>
             </div>
-            <input type="submit" name="btn_submit" value="Login"></input>
+            <div class="btn-login">
+                <button>Login</button>
+            </div>
             <div class="register">Not a member? <a href="./register.php">Register</a></div>
         </form>
     </div>
