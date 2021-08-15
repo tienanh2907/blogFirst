@@ -45,30 +45,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/register.css">
     <script type="text/javascript" src="./js/validate-account.js"></script>
+    <script src="https://kit.fontawesome.com/10b69a6de3.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
+    
     <div class="wrapper">
         <div class="title">Register</div>
         <form method="POST" action="/register">
             <div class="text-field">
                 <label>Fullname</label>
-                <input type="text" name="fullname" size="30">
+                <input type="text" name="fullname">
                 <div class="validate-error"></div>
             </div>
             <div class="text-field">
                 <label>Username</label>
-                <input type="text" name="username" size="30">
+                <input type="text" name="username">
                 <div class="validate-error"></div>
             </div>
             <div class="text-field">
                 <label>Password</label>
-                <input type="password" name="password" size="30">
+                <input type="password" name="password">
                 <div class="validate-error"></div>
             </div>
             <div class="text-field">
                 <label>Confirm Password</label>
-                <input type="password" name="confirm-password" size="30">
+                <input type="password" name="confirm-password">
                 <div class="validate-error"></div>
             </div>
             <button>Register</button>

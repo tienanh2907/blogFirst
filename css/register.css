@@ -16,7 +16,7 @@ body {
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: rgb(27, 182, 191);
+  background: #1bb6bf;
   background: linear-gradient(
     90deg,
     rgba(27, 182, 191, 1) 0%,
@@ -27,41 +27,70 @@ body {
 
 .wrapper {
   background: #ffffff;
-  max-width: 60rem;
+  max-width: 70rem;
   width: 100%;
   text-align: center;
-  padding: 30px 50px;
+  padding: 50px 40px;
+  border-radius: 8px;
 }
 
 .title {
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 4rem;
   font-size: 3rem;
   font-weight: 700;
+  color: #1bb6bf;
+  text-transform: uppercase;
 }
 
 .text-field {
-  font-size: 1.6rem;
   margin-bottom: 10px;
   display: flex;
-  height: 30px;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 
 .text-field label {
-  width: 25rem;
+  width: 30rem;
   text-align: left;
-  margin-right: 10px;
+  margin-right: 1rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #a0a0a0;
 }
 
 .text-field input {
   width: 100%;
   height: 100%;
+  outline: none;
+  padding: 10px;
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+  border-radius: 5px;
+  border: 2px solid #a0a0a0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.text-field input:focus {
+  border: 2px solid #1bb6bf;
 }
 
 .text-field .validate-error {
   height: 10px;
   color: #f00000;
   font-size: 10px;
+}
+
+button {
+  background: #1bb6bf;
+  font-size: 2.4rem;
+  height: 6rem;
+  min-width: 20rem;
+  width: 26rem;
+  border-radius: 8px;
+  border: solid 1px grey;
+  color: #fff;
+  font-weight: 700;
+  margin-top: 15px;
 }
