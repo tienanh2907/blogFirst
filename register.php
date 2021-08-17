@@ -44,34 +44,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/register.css">
-    <script type="text/javascript" src="./js/validate-account.js"></script>
+    <script type="text/javascript" src="./js/validate-register.js"></script>
     <script src="https://kit.fontawesome.com/10b69a6de3.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    
+
     <div class="wrapper">
         <div class="title">Register</div>
-        <form method="POST" action="/register">
+        <form method="POST" action="/register" name="register-form" onsubmit="return validate()">
             <div class="text-field">
                 <label>Fullname</label>
                 <input type="text" name="fullname">
-                <div class="validate-error"></div>
+                <p id="error-fullname" class="validate-error"></p>
             </div>
             <div class="text-field">
                 <label>Username</label>
                 <input type="text" name="username">
-                <div class="validate-error"></div>
+                <p id="error-username" class="validate-error"></p>
             </div>
             <div class="text-field">
                 <label>Password</label>
                 <input type="password" name="password">
-                <div class="validate-error"></div>
+                <p id="error-password" class="validate-error"></p>
             </div>
             <div class="text-field">
                 <label>Confirm Password</label>
                 <input type="password" name="confirm-password">
-                <div class="validate-error"></div>
+                <p id="confirm-password" class="validate-error"></p>
             </div>
             <button>Register</button>
         </form>
