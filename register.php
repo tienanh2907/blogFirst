@@ -5,10 +5,9 @@ function validate($post)
 {
     $post = (object)$post;
 
-    if ($post->confirmpassword != $post->password) {
+    if ($post->confirmPassword != $post->password) {
         return false;
     }
-
     return true;
 }
 
@@ -55,23 +54,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="POST" action="/register" name="register-form" onsubmit="return validate()">
             <div class="text-field">
                 <label>Fullname</label>
-                <input type="text" name="fullname">
-                <p id="error-fullname" class="validate-error"></p>
+                <input type="text" name="fullname" id="name">
+                <p id="error__fullname" class="validate-error"></p>
             </div>
             <div class="text-field">
                 <label>Username</label>
-                <input type="text" name="username">
-                <p id="error-username" class="validate-error"></p>
+                <input type="text" name="username" id="usename">
+                <p id="error__username" class="validate-error"></p>
             </div>
             <div class="text-field">
                 <label>Password</label>
-                <input type="password" name="password">
-                <p id="error-password" class="validate-error"></p>
+                <input type="password" name="password" id="password" >
+                <p id="error__password" class="validate-error"></p>
             </div>
             <div class="text-field">
                 <label>Confirm Password</label>
-                <input type="password" name="confirm-password">
-                <p id="confirm-password" class="validate-error"></p>
+                <input type="password" name="confirmPassword" id="confirmPassword">
+                <p id="error__confirmPassword" class="validate-error"></p>
             </div>
             <button>Register</button>
         </form>
