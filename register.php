@@ -1,23 +1,47 @@
 <?php
 include("connect.php");
+define('FULLNAME', "/^\d$/g");
+define('USENAME', "/^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/igm");
+define('PASSWORD', "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm");
 
-function validate($post)
+function validate($post, array $error)
 {
     $post = (object)$post;
-
-    if ($post->confirmPassword != $post->password) {
-        return false;
+    if (empty($post->fullname)) {
+        $error['fullname'] = "Please enter your full name";
+    } else if (!preg_match(FULLNAME, $post->fullname)) {
+        $error['fullname'] = "Name invalid";
     }
-    return true;
+
+    if (empty($post->username)) {
+        $error['usernae'] = 'Please enter the username';
+    } else if (!preg_match(USENAME, $post->username)) {
+        $error['username'] = "Username invalid";
+    }
+    if (empty($post->password)) {
+        $error['password'] = "Please enter password";
+    } else if (!preg_match(PASSWORD, $post->password)) {
+        $error['password'] = "Password invalid";
+    }
+
+    // validate confirm password
+    if (empty($post->confirmPassword)) {
+        $error['confirm password'] = "Please enter confirm password";
+    } else if ($post->confirmPassword != $post->password) {
+        $error['confirm password'] = "Password do not match";
+    }
+
+    if (empty($error)) {return true; }
+    return false;
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $user =  $_POST['username'];
     $fullname = $_POST['fullname'];
     $pass = $_POST['password'];
-    $confirmpassword = $_POST['confirm-password'];
-
-    if (validate($_POST)) {
+    $confirmpassword = $_POST['confirmPassword'];
+    $error = [];
+    if (validate($_POST, $error)) {
         $pass = md5($pass);
         $sql = "INSERT INTO `account`(`username`, `fullname`, `password`) 
           VALUES('$user','$fullname','$pass');";
@@ -64,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="text-field">
                 <label>Password</label>
-                <input type="password" name="password" id="password" >
+                <input type="password" name="password" id="password">
                 <p id="error__password" class="validate-error"></p>
             </div>
             <div class="text-field">

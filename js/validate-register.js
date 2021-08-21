@@ -5,9 +5,9 @@ const password = document.forms["register-form"]['password'].value
 const confirmPassword = document.forms["register-form"]['confirm-password'].value
 var error = []
 const RegEx = [
-    'fullname' = /^\d$/g,
-    'username' = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/igm,
-    'password' = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm
+    'fullname' = "/^\d$/g",
+    'username' = "/^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/igm",
+    'password' = "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm"
 ]
 
 function isEmpty(str) {
@@ -19,21 +19,21 @@ function validate() {
     if (isEmpty(fullname)) {
         error['fullname'] = "Please enter your full name"
     } else if (!RegEx["fullname"].test(fullname)) {
-        error['fullname'] = "Invalid name";
+        error['fullname'] = "Name invalid"
     }
 
     //validate username
     if (isEmpty(username)) {
         error['username'] = "Please enter the username";
     } else if (!RegEx['username'].test(username)) {
-        error['username'] = "Invalid username"
+        error['username'] = "Username invalid"
     }
 
     // validate password
     if (isEmpty(password)) {
         error['password'] = "Please enter password"
     } else if (!RegEx['password'].test(password)) {
-        error['password'] = "invalid password"
+        error['password'] = "Password invalid"
     }
 
     // validate confirm password
@@ -42,19 +42,18 @@ function validate() {
     } else if (confirmPassword != password) {
         error['confirm password'] = "Password do not match"
     }
-    
+
     //result validate
     if (error.length > 0) {
         document.getElementById('error__fullname').innerHTML = error['fullname']
         document.getElementById('error__username').innerHTML = error['username']
         document.getElementById('error__password').innerHTML = error['password']
         document.getElementById('error__confirmPassword') = error['confirmPassword']
-        error.splice(0,error.length);
+        error.splice(0, error.length);
         return false;
     } else {
         return true
     }
 }
 
-document.getElementsByTagName("button").onclick = function () { validate() }
-
+document.getElementsByTagName("button").onclick = function() { validate() }
