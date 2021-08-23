@@ -1,21 +1,20 @@
-const fullname = document.forms["register-form"]['fullname'].value
-const email = document.forms["register-form"]['email'].value
-const username = document.forms["register-form"]['username'].value
-const password = document.forms["register-form"]['password'].value
-const confirmPassword = document.forms["register-form"]['confirm-password'].value
-var error = []
-const RegEx = [
-    'fullname' = "/^\d$/g",
-    'username' = "/^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/igm",
-    'password' = "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm"
-]
-
 function isEmpty(str) {
     return (str == '' || str == null) ? true : false
 }
 
 function validate() {
-    // validate text
+    const fullname = document.forms["register-form"]['fullname'].value
+    const email = document.forms["register-form"]['email'].value
+    const username = document.forms["register-form"]['username'].value
+    const password = document.forms["register-form"]['password'].value
+    const confirmPassword = document.forms["register-form"]['confirm-password'].value
+    var error = []
+    const RegEx = [
+            'fullname' = "[A-Za-z]+([\ A-Za-z]+)*$/gm",
+            'username' = "/^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/igm",
+            'password' = "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm"
+        ]
+        // validate text
     if (isEmpty(fullname)) {
         error['fullname'] = "Please enter your full name"
     } else if (!RegEx["fullname"].test(fullname)) {

@@ -1,11 +1,14 @@
 <?php
 include("connect.php");
-define('FULLNAME', "/^\d$/g");
-define('USENAME', "/^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/igm");
-define('PASSWORD', "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm");
+$db = new Database();
+$conn = $db->getConnection();
+define('FULLNAME', '/^[A-Za-z]+([\ A-Za-z]+)*$/m');
+define('USENAME', '/^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/im');
+define('PASSWORD', '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/m');
 
-function validate($post, array $error)
+function validate($post)
 {
+   $error = [];
     $post = (object)$post;
     if (empty($post->fullname)) {
         $error['fullname'] = "Please enter your full name";
@@ -30,9 +33,7 @@ function validate($post, array $error)
     } else if ($post->confirmPassword != $post->password) {
         $error['confirm password'] = "Password do not match";
     }
-
-    if (empty($error)) {return true; }
-    return false;
+   
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -40,14 +41,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fullname = $_POST['fullname'];
     $pass = $_POST['password'];
     $confirmpassword = $_POST['confirmPassword'];
-    $error = [];
-    if (validate($_POST, $error)) {
+ 
+    validate($_POST);
+    var_dump($error);
+    if (empty($error)) {
         $pass = md5($pass);
         $sql = "INSERT INTO `account`(`username`, `fullname`, `password`) 
           VALUES('$user','$fullname','$pass');";
-        //mysqli_query($conn, $sql);
         if (mysqli_query($conn, $sql)) {
-            echo "New record created successfully";
+            echo "Register successfully";
         } else {
             echo "Error: " . $sql . "<br>" . mysqli_error($conn);
         }
@@ -96,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="password" name="confirmPassword" id="confirmPassword">
                 <p id="error__confirmPassword" class="validate-error"></p>
             </div>
-            <button>Register</button>
+            <button onclick="validate()">Register</button>
         </form>
     </div>
 </body>
