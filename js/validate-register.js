@@ -3,14 +3,14 @@ function isEmpty(str) {
 }
 
 function validate() {
-    const fullname = document.forms["register-form"]['fullname'].value
-    const email = document.forms["register-form"]['email'].value
-    const username = document.forms["register-form"]['username'].value
-    const password = document.forms["register-form"]['password'].value
-    const confirmPassword = document.forms["register-form"]['confirm-password'].value
+    const fullname = document.getElementById('fullname').value
+    const email = document.getElementById('email').value
+    const username = document.getElementById('username').value
+    const password = document.getElementById('password').value
+    const confirmPassword = document.getElementById('confirmPassword').value
     var error = []
     const RegEx = [
-            'fullname' = "[A-Za-z]+([\ A-Za-z]+)*$/gm",
+            'fullname' = "/^[A-Za-z]+([\ A-Za-z]+)*$/gm",
             'username' = "/^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/igm",
             'password' = "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm"
         ]
@@ -43,16 +43,10 @@ function validate() {
     }
 
     //result validate
-    if (error.length > 0) {
-        document.getElementById('error__fullname').innerHTML = error['fullname']
-        document.getElementById('error__username').innerHTML = error['username']
-        document.getElementById('error__password').innerHTML = error['password']
-        document.getElementById('error__confirmPassword') = error['confirmPassword']
-        error.splice(0, error.length);
-        return false;
-    } else {
-        return true
-    }
+    document.getElementById('error__fullname').innerHTML = error['fullname']
+    document.getElementById('error__username').innerHTML = error['username']
+    document.getElementById('error__password').innerHTML = error['password']
+    document.getElementById('error__confirmPassword') = error['confirmPassword']
+    error.splice(0, error.length);;
 }
-
-document.getElementsByTagName("button").onclick = function() { validate() }
+// document.getElementsByTagName("button").onclick = function() { validate() }

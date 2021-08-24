@@ -33,7 +33,6 @@ function validate($post)
     } else if ($post->confirmPassword != $post->password) {
         $error['confirm password'] = "Password do not match";
     }
-   
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -43,7 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $confirmpassword = $_POST['confirmPassword'];
  
     validate($_POST);
-    var_dump($error);
     if (empty($error)) {
         $pass = md5($pass);
         $sql = "INSERT INTO `account`(`username`, `fullname`, `password`) 
@@ -77,10 +75,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <div class="wrapper">
         <div class="title">Register</div>
-        <form method="POST" action="/register" name="register-form" onsubmit="return validate()">
+        <form method="POST" action="/register" name="register-form"> 
             <div class="text-field">
                 <label>Fullname</label>
-                <input type="text" name="fullname" id="name">
+                <input type="text" name="fullname" id="fullname">
                 <p id="error__fullname" class="validate-error"></p>
             </div>
             <div class="text-field">
@@ -98,7 +96,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="password" name="confirmPassword" id="confirmPassword">
                 <p id="error__confirmPassword" class="validate-error"></p>
             </div>
-            <button onclick="validate()">Register</button>
+            <button id="register" onclick="validate()">Register</button>
         </form>
     </div>
 </body>
