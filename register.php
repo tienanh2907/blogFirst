@@ -43,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $confirmpassword = $_POST['confirmPassword'];
  
     validate($_POST);
-    var_dump($error);
     if (empty($error)) {
         $pass = md5($pass);
         $sql = "INSERT INTO `account`(`username`, `fullname`, `password`) 
@@ -69,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/register.css">
-    <script type="text/javascript" src="./js/validate-register.js"></script>
+   
     <script src="https://kit.fontawesome.com/10b69a6de3.js" crossorigin="anonymous"></script>
 </head>
 
@@ -101,6 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button onclick="validate()">Register</button>
         </form>
     </div>
+ <script type="text/javascript" src="./js/validate-register.js"></script>
 </body>
 
 </html>
