@@ -71,39 +71,42 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/register.css">
- 
+
     <script src="https://kit.fontawesome.com/10b69a6de3.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
     <div class="wrapper">
-        <div class="title">Register</div>
-        <form method="POST" action="/register" name="register-form" onSubmit="return validator()">
-            <div class="text-field">
-                <label>Fullname</label>
-                <input type="text" name="fullname" id="name">
-                <span id="error__fullname" class="validate-error"></span>
+        <form method="POST" action="/register" id="form-register" onsubmit="return false">
+            <h3 class="title">Register</h3>
+            <div class="form-group">
+                <label for="fullname" class="form-label">Fullname</label>
+                <input type="text" name="fullname" id="fullname" class="form-input">
+                <span id="error__fullname" class="form-error"></span>
             </div>
-            <div class="text-field">
-                <label>Username</label>
-                <input type="text" name="username" id="usename">
-                <span id="error__username" class="validate-error"></span>
+            <div class="form-group">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" name="username" id="username" class="form-input">
+                <span id="error__username" class="form-error"></span>
             </div>
-            <div class="text-field">
-                <label>Password</label>
-                <input type="password" name="password" id="password">
-                <span id="error__password" class="validate-error"></span>
+            <div class="form-group">
+                <label for="password"class="form-label">Password</label>
+                <input type="password" name="password" id="password" class="form-input">
+                <span id="error__password" class="form-error"></span>
             </div>
-            <div class="text-field">
-                <label>Confirm Password</label>
-                <input type="password" name="confirmPassword" id="confirmPassword">
-                <span id="error__confirmPassword" class="validate-error"></span>
+            <div class="form-group">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" name="confirmPassword" id="confirmPassword" class="form-input">
+                <span id="error__confirmPassword" class="form-error"></span>
             </div>
-            <button onclick="validate()">Register</button>
+            <button onclick="validator()">Register</button>
         </form>
     </div>
-    <script type="text/javascript" src="./js/validate-register.js"></script>
+    <script type="text/javascript" src="./validator.js"></script>
+    <script>
+        
+    </script>
 </body>
 
 </html>

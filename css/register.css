@@ -4,92 +4,110 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
 }
 
 html {
   font-size: 62.5%;
-}
-
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  font-family: "Montserrat", sans-serif;
   background: #1bb6bf;
   background: linear-gradient(
     90deg,
     rgba(27, 182, 191, 1) 0%,
     rgba(143, 48, 196, 1) 100%
   );
-  height: 100vh;
 }
 
 .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+#form-register {
   background: #ffffff;
-  max-width: 70rem;
-  width: 100%;
+  width: 40rem;
+  min-height: 100px;
   text-align: center;
   padding: 50px 40px;
   border-radius: 8px;
+  align-self: center;
+  margin: 20px;
 }
 
 .title {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   font-size: 3rem;
   font-weight: 700;
   color: #1bb6bf;
   text-transform: uppercase;
 }
 
-.text-field {
-  margin-bottom: 10px;
+.form-group {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-bottom: 10px;
+  /* align-items: center; */
+  /* justify-content: center; */
   text-align: center;
+  flex-direction: column;
 }
 
-.text-field label {
-  width: 30rem;
+.form-label,
+.form-error {
   text-align: left;
-  margin-right: 1rem;
+}
+
+.form-label {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #a0a0a0;
+  color: #5c5c5c;
+  line-height: 2rem;
+  margin: 0 0 10px 0px;
 }
 
-.text-field input {
-  width: 100%;
-  height: 100%;
+.form-input {
   outline: none;
-  padding: 10px;
-  margin-bottom: 10px;
-  font-size: 1.8rem;
+  padding: 13px 10px;
+  font-size: 1.6rem;
   border-radius: 5px;
-  border: 2px solid #a0a0a0;
-  font-family: Arial, Helvetica, sans-serif;
+  border: 1px solid #a0a0a0;
+  display: flex;
 }
 
-.text-field input:focus {
-  border: 2px solid #1bb6bf;
+.form-error {
+  font-size: 10px;
+  line-height: 1.5rem;
+  margin: 10px 5px;
 }
 
-.text-field .validate-error {
-  color: #f00000;
-  font-size: 14px;
+.form-input:focus,
+.form-input:hover {
+  border-color: #1bb6bf;
+}
+
+.form-group.invalid .form-input {
+  border-color: #f33a58;
+}
+
+.form-group.invalid .form-error {
+  color: #f33a58;
 }
 
 button {
+  outline: none;
   background: #1bb6bf;
-  font-size: 2.4rem;
-  height: 6rem;
-  min-width: 20rem;
-  width: 26rem;
+  font-size: 2rem;
+  margin-top: 15px;
+  padding: 1.2rem;
+  width: 100%;
   border-radius: 8px;
-  border: solid 1px grey;
+  border: none;
   color: #fff;
   font-weight: 700;
-  margin-top: 15px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #04959c;
 }
