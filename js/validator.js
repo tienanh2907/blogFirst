@@ -1,12 +1,12 @@
 function isEmpty(str) {
-    return (str.trim().length === 0|| str === null || !str) ? true : false
+    return (str.trim().length === 0 || str === null || !str) ? true : false
 }
 
 function errorDisplayById(idElement, error) {
     document.getElementById(idElement).innerText = error
 }
 
-function validator() {
+function Validator() {
     const fullname = document.getElementById("fullname").value
     const username = document.getElementById("username").value
     const password = document.getElementById("password").value
@@ -55,5 +55,14 @@ function validator() {
     }
 
     //result validate
-    return (Object.entries(error).length === 0)? false : true
+    return (Object.entries(error).length === 0) ? false : true
+}
+
+Validator.isRequired = function (selector, message) {
+    return {
+        selector: selector,
+        message: function (value){
+                return value ? undefined : message
+        }
+    };
 }

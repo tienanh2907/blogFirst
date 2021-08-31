@@ -105,7 +105,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
     <script type="text/javascript" src="./validator.js"></script>
     <script>
-        
+        Validator({
+            form: '#form-register',
+            rules: [
+                Validator.isRequired('#fullname',"Please enter your full name")
+            ]
+        });
     </script>
 </body>
 
