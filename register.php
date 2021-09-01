@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <span id="error__username" class="form-error"></span>
             </div>
             <div class="form-group">
-                <label for="password"class="form-label">Password</label>
+                <label for="password" class="form-label">Password</label>
                 <input type="password" name="password" id="password" class="form-input">
                 <span id="error__password" class="form-error"></span>
             </div>
@@ -100,15 +100,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input type="password" name="confirmPassword" id="confirmPassword" class="form-input">
                 <span id="error__confirmPassword" class="form-error"></span>
             </div>
-            <button onclick="validator()">Register</button>
+            <button>Register</button>
         </form>
     </div>
-    <script type="text/javascript" src="./validator.js"></script>
+    <script type="text/javascript" src="./js/validator.js"></script>
     <script>
         Validator({
             form: '#form-register',
+            formGroupSelector: '.form-group',
+            errorSelector: '.form-error',
             rules: [
-                Validator.isRequired('#fullname',"Please enter your full name")
+                Validator.isRequired('#fullname', "Please enter your full name"),
+                Validator.isValidated('#fullname'),
+                Validator.isRequired('#username', "Please enter your user name"),
+                Validator.isValidated('#username'),
+                Validator.isRequired('#password', "Please enter your password"),
+                Validator.isValidated('#password'),
+                Validator.isRequired('#confirmPassword', "Please enter Confirm Password"),
+                Validator.isConfirmed('#confirmPassword')
             ]
         });
     </script>

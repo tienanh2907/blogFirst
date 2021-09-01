@@ -27,9 +27,8 @@ html {
 #form-register {
   background: #ffffff;
   width: 40rem;
-  min-height: 100px;
   text-align: center;
-  padding: 50px 40px;
+  padding: 30px 35px;
   border-radius: 8px;
   align-self: center;
   margin: 20px;
@@ -37,7 +36,7 @@ html {
 
 .title {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
   font-size: 3rem;
   font-weight: 700;
   color: #1bb6bf;
@@ -63,12 +62,12 @@ html {
   font-weight: 700;
   color: #5c5c5c;
   line-height: 2rem;
-  margin: 0 0 10px 0px;
+  margin-bottom: 5px;
 }
 
 .form-input {
   outline: none;
-  padding: 13px 10px;
+  padding: 10px 8px;
   font-size: 1.6rem;
   border-radius: 5px;
   border: 1px solid #a0a0a0;
@@ -76,29 +75,29 @@ html {
 }
 
 .form-error {
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.5rem;
-  margin: 10px 5px;
+  margin: 8px 5px;
 }
 
 .form-input:focus,
 .form-input:hover {
-  border-color: #1bb6bf;
+  border-color: #00bac4;
 }
 
 .form-group.invalid .form-input {
-  border-color: #f33a58;
+  border-color: #fa1111;
+  background-color: rgb(243, 58, 88,0.1)
 }
 
 .form-group.invalid .form-error {
-  color: #f33a58;
+  color: #fa1111;
 }
 
 button {
   outline: none;
   background: #1bb6bf;
   font-size: 2rem;
-  margin-top: 15px;
   padding: 1.2rem;
   width: 100%;
   border-radius: 8px;
@@ -106,6 +105,7 @@ button {
   color: #fff;
   font-weight: 700;
   cursor: pointer;
+  margin-top: 1rem;
 }
 
 button:hover {
