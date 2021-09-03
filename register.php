@@ -5,7 +5,7 @@ $conn = $db->getConnection();
 define('FULLNAME', '/^[A-Za-z]+([\ A-Za-z]+)*$/m');
 define('USERNAME', '/^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/im');
 define('PASSWORD', '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/m');
-var_dump($_SERVER);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username =  $_POST['username'];
     $email = $_POST['email'];
@@ -78,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
     <div class="wrapper">
-        <form method="POST" action="/register" id="form-register" >
+        <form method="POST" action="/register" id="form-register" onsubmit="return false">
             <h3 class="title">Register</h3>
             <div class="form-group">
                 <label for="username" class="form-label">Username</label>
@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="form-group">
                 <label for="email" class="form-label">Email</label>
-                <input type="text" id="email" name="email" class="form-input">
+                <input type="text" id="email" name="email" class="form-input"/>
                 <span class="form-error"></span>
             </div>
             <div class="form-group">
@@ -110,19 +110,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             formGroupSelector: '.form-group',
             errorSelector: '.form-error',
             rules: [
-                Validator.isRequired('#username', "Please enter your user name"),
-                Validator.isRequired('#email', "Please enter your full name"),
-                Validator.isRequired('#password', "Please enter your password"),
-                Validator.isRequired('#confirm-password', "Please enter Confirm Password"),
+                Validator.isValidated('#username',/^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/igm, "Username is incorrect"),
+                Validator.isValidated('#email',/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g,"Email is incorrect"),
+                Validator.isValidated('#password',/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,"Password is incorrect"),
+                Validator.isConfirmed('#confirm-password',()=>{ return document.getElementById('#password').value},"Confirm password is incorrect")
             ]
         })
         </script>
 </body>
 
 </html>
-// Validator.isValidated('#username',"Invalid username",/^[a-zA-Z0-9]+$/),
-// Validator.isValidated('#email'),
-// Validator.isConfirmed('#confirm-password',()=>{
-    //     $('#password').value
-    // },"Confirm password is incorrect")
-// Validator.isValidated('#password'),
