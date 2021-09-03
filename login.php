@@ -2,7 +2,7 @@
 
 include("connect.php");
 $error = [];
-
+var_dump($_SERVER);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     (!empty($_POST['username'])) ? $username = trim($_POST['username']) : $error[] = 'Enter the username';
     (!empty($_POST['password'])) ?  $password = trim($_POST['password']) : $error[] = 'Enter the password';
@@ -60,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="btn-login">
                 <button>Login</button>
             </div>
-            <div class="register">Not a member? <a href="./register.php">Register</a></div>
+            <div class="register">Not a member? <a href="register.php">Register</a></div>
         </form>
     </div>
 </body>

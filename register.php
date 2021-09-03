@@ -1,27 +1,21 @@
 <?php
-include("connect.php");
+include 'connect.php';
 $db = new Database();
 $conn = $db->getConnection();
 define('FULLNAME', '/^[A-Za-z]+([\ A-Za-z]+)*$/m');
-define('USENAME', '/^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/im');
+define('USERNAME', '/^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/im');
 define('PASSWORD', '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/m');
-
+var_dump($_SERVER);
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username =  $_POST['username'];
-    $fullname = $_POST['fullname'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
-    $confirmPassword = $_POST['confirmPassword'];
-
+    $confirmPassword = $_POST['confirm-password'];
     $error = [];
-    if (empty($fullname)) {
-        $error['fullname'] = "Please enter your full name";
-    } else if (!preg_match(FULLNAME, $fullname)) {
-        $error['fullname'] = "Name invalid";
-    }
 
     if (empty($username)) {
         $error['username'] = "Please enter the username";
-    } else if (!preg_match(USENAME, $username)) {
+    } else if (!preg_match(USERNAME, $username)) {
         $error['username'] = "Username invalid";
     }
 
@@ -31,6 +25,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $error['username'] = "Username already exists ";
             break;
         }
+    }
+
+    if (empty($email)) {
+        $error['email'] = "Please enter your full name";
+    } else if (!preg_match(FULLNAME, $email)) {
+        $error['email'] = "Name invalid";
     }
 
     if (empty($password)) {
@@ -47,9 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($error)) {
-        $pass = md5($pass);
+        $password = md5($password);
         $sql = "INSERT INTO `account`(`username`, `fullname`, `password`) 
-          VALUES('$user','$fullname','$pass')";
+          VALUES('$username','$email','$password')";
         if (mysqli_query($conn, $sql)) {
             echo "Register successfully";
         } else {
@@ -78,27 +78,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 
     <div class="wrapper">
-        <form method="POST" action="/register" id="form-register" onsubmit="return false">
+        <form method="POST" action="/register" id="form-register" >
             <h3 class="title">Register</h3>
-            <div class="form-group">
-                <label for="fullname" class="form-label">Fullname</label>
-                <input type="text" name="fullname" id="fullname" class="form-input">
-                <span id="error__fullname" class="form-error"></span>
-            </div>
             <div class="form-group">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" name="username" id="username" class="form-input">
-                <span id="error__username" class="form-error"></span>
+                <span class="form-error"></span>
+            </div>
+            <div class="form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" id="email" name="email" class="form-input">
+                <span class="form-error"></span>
             </div>
             <div class="form-group">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" id="password" class="form-input">
-                <span id="error__password" class="form-error"></span>
+                <input type="password" id="password" name="password" class="form-input">
+                <span class="form-error"></span>
             </div>
             <div class="form-group">
-                <label for="confirmPassword" class="form-label">Confirm Password</label>
-                <input type="password" name="confirmPassword" id="confirmPassword" class="form-input">
-                <span id="error__confirmPassword" class="form-error"></span>
+                <label for="confirm-password" class="form-label">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" class="form-input">
+                <span class="form-error"></span>
             </div>
             <button>Register</button>
         </form>
@@ -110,17 +110,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             formGroupSelector: '.form-group',
             errorSelector: '.form-error',
             rules: [
-                Validator.isRequired('#fullname', "Please enter your full name"),
-                Validator.isValidated('#fullname'),
                 Validator.isRequired('#username', "Please enter your user name"),
-                Validator.isValidated('#username'),
+                Validator.isRequired('#email', "Please enter your full name"),
                 Validator.isRequired('#password', "Please enter your password"),
-                Validator.isValidated('#password'),
-                Validator.isRequired('#confirmPassword', "Please enter Confirm Password"),
-                Validator.isConfirmed('#confirmPassword')
+                Validator.isRequired('#confirm-password', "Please enter Confirm Password"),
             ]
-        });
-    </script>
+        })
+        </script>
 </body>
 
 </html>
+// Validator.isValidated('#username',"Invalid username",/^[a-zA-Z0-9]+$/),
+// Validator.isValidated('#email'),
+// Validator.isConfirmed('#confirm-password',()=>{
+    //     $('#password').value
+    // },"Confirm password is incorrect")
+// Validator.isValidated('#password'),

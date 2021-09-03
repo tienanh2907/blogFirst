@@ -1,13 +1,13 @@
 function Validator(option) {
     const formElement = document.querySelector(option.form);
-
-    function showError(inputElement, rule){
+    // console.log($('#username'))
+    function showError(inputElement, rule) {
         const errorMessage = rule.message(inputElement.value)
         const errorElement = inputElement.parentElement.querySelector(option.errorSelector)
-        if(errorMessage){
-            errorElement.innerText = errorMessage; 
+        if (errorMessage) {
+            errorElement.innerText = errorMessage;
             inputElement.parentElement.classList.add('invalid');
-        }else{
+        } else {
             errorElement.innerText = ""
             inputElement.parentElement.classList.remove('invalid');
         }
@@ -24,19 +24,34 @@ function Validator(option) {
         })
     }
 
-    const RegExpFullname = /^[A-Za-z]+([\ A-Za-z]+)*$/gm
-    const RegExpUsername = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/igm
-    const RegExpPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm
+
 
 
 }
 
-Validator.isRequired = function (selector, message) {
+Validator.isRequired = (selector, message) => {
     return {
         selector: selector,
-        message: (value) => { return value.trim() ? undefined : message }
-    };
+        message: (value) => { 
+            value.trim() ? undefined : message
+        }
+    }
 }
 
+// Validator.isValidated = (selector, message, regex) => {
+//     return {
+//         selector: selector,
+//         message: (value) => { 
+//             regex.test(value) ? undefined : message|| "Incorrect format" 
+//         }
+//     }
+// }
 
-
+// Validator.isConfirmed = (selector, getConfirmValue, message) => {
+//     return {
+//         selector: selector,
+//         test: function (value) {
+//             return value === getConfirmValue() ? undefined : message || 'Confirm password is incorrect';
+//         }
+//     }
+//  }
