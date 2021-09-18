@@ -53,3 +53,15 @@ Validator.isConfirmed = (selector, getConfirmValue, message) => {
         }
     }
 }
+
+Validator({
+    form: $('#form-register'),
+    formGroupSelector: $('.form-group'),
+    errorSelector: $('.form-error'),
+    rules: [
+        Validator.isValidated('#username',/^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/igm, "Username is incorrect"),
+        Validator.isValidated('#email',/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g,"Email is incorrect"),
+        Validator.isValidated('#password',/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,"Password is incorrect"),
+        Validator.isConfirmed('#confirm-password',()=>{ return document.getElementById('#password').value},"Confirm password is incorrect")
+    ]
+})
