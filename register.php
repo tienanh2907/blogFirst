@@ -2,7 +2,6 @@
 include 'connect.php';
 $db = new Database();
 $conn = $db->getConnection();
-define('FULLNAME', '/^[A-Za-z]+([\ A-Za-z]+)*$/m');
 define('USERNAME', '/^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/im');
 define('PASSWORD', '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/m');
 
@@ -28,9 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($email)) {
-        $error['email'] = "Please enter your full name";
-    } else if (!preg_match(FULLNAME, $email)) {
-        $error['email'] = "Name invalid";
+        $error['email'] = "Please enter your email";
+    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error['email'] = "Invalid email format";
     }
 
     if (empty($password)) {
@@ -71,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/register.css">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/10b69a6de3.js" crossorigin="anonymous"></script>
 </head>
 
