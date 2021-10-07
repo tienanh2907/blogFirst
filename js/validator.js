@@ -1,6 +1,6 @@
 function Validator(option) {
-    const formElement = document.querySelector(option.form);
-     
+    const formElement = $(option.form);
+    console.log(option)
     function showError(inputElement, rule) {
         const errorMessage = rule.test(inputElement.value)
         console.log(inputElement.value)
@@ -37,7 +37,7 @@ Validator.isValidated = (selector, regex, message) => {
             if (isEmpty(value)) {
                 return isEmpty(value)
             }
-            return regex.test(value) ? undefined : message || "Incorrect data type"
+            return regex.test(value) ? undefined : "Invalid " + message + "format" || "Incorrect data type"
         }
     }
 }
@@ -55,13 +55,13 @@ Validator.isConfirmed = (selector, getConfirmValue, message) => {
 }
 
 Validator({
-    form: $('#form-register'),
-    formGroupSelector: $('.form-group'),
-    errorSelector: $('.form-error'),
+    form: $('#form-register').attr('id'),
+    formGroupSelector: $('.form-group').attr('class'),
+    errorSelector: $('.form-error').attr('class'),
     rules: [
-        Validator.isValidated('#username',/^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/igm, "Username is incorrect"),
-        Validator.isValidated('#email',/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g,"Email is incorrect"),
-        Validator.isValidated('#password',/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,"Password is incorrect"),
-        Validator.isConfirmed('#confirm-password',()=>{ return document.getElementById('#password').value},"Confirm password is incorrect")
+        Validator.isValidated($('#username'),/^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/igm, "username "),
+        Validator.isValidated($('#email'),/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g,"email"),
+        Validator.isValidated($('#password'),/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,"password"),
+        Validator.isConfirmed($('#confirm-password'),()=>{ return document.getElementById('#password').value},"Confirm password is incorrect")
     ]
 })

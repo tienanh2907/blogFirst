@@ -15,13 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($username)) {
         $error['username'] = "Please enter the username";
     } else if (!preg_match(USERNAME, $username)) {
-        $error['username'] = "Username invalid";
+        $error['username'] = "Invalid username";
     }
 
     $selectUsername = "SELECT `username` FROM `account`";
     foreach ($conn->query($selectUsername) as $data) {
         if ($username == $data) {
-            $error['username'] = "Username already exists ";
+            $error['username'] = "Username already exists";
             break;
         }
     }
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($password)) {
         $error['password'] = "Please enter password";
     } else if (!preg_match(PASSWORD, $password)) {
-        $error['password'] = "Password invalid";
+        $error['password'] = "Invalid password";
     }
 
     // validate confirm password
@@ -82,22 +82,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-group">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" name="username" id="username" class="form-input">
-                <span class="form-error"></span>
+                <span class="form-error"><?php echo $error['username']; ?></span>
             </div>
             <div class="form-group">
                 <label for="email" class="form-label">Email</label>
-                <input type="text" id="email" name="email" class="form-input"/>
-                <span class="form-error"></span>
+                <input type="text" id="email" name="email" class="form-input" />
+                <span class="form-error"><?php echo $error['email']; ?></span>
             </div>
             <div class="form-group">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" id="password" name="password" class="form-input">
-                <span class="form-error"></span>
+                <span class="form-error"><?php echo $error['password']; ?></span>
             </div>
             <div class="form-group">
                 <label for="confirm-password" class="form-label">Confirm Password</label>
                 <input type="password" id="confirm-password" name="confirm-password" class="form-input">
-                <span class="form-error"></span>
+                <span class="form-error"><?php echo $error['confirm password']; ?></span>
             </div>
             <button>Register</button>
         </form>
